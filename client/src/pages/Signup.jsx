@@ -8,7 +8,8 @@ export default class Signup extends Component {
   state = {
     username: "",
     password: "",
-    error: null,
+    email: "",
+    error: null
   };
 
   handleInputChange = (event) => {
@@ -23,6 +24,7 @@ export default class Signup extends Component {
     const credentials = {
       username: this.state.username,
       password: this.state.password,
+      email: this.state.email
     };
     signup(credentials).then((res) => {
       // successful signup
@@ -62,6 +64,17 @@ export default class Signup extends Component {
             onChange={this.handleInputChange}
             required
             minLength="8"
+          />
+
+          <label htmlFor="input-password">Email</label>
+          <input
+            id="input-email"
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={this.state.email}
+            onChange={this.handleInputChange}
+            required
           />
 
           {this.state.error && (
