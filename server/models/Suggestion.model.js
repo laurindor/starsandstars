@@ -1,14 +1,14 @@
 const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
-const mailBoxSchema = new Schema(
+const suggestionSchema = new Schema(
     {
         name: String,
         comment: {type: String, maxlength: "300" , required: true},
-        userId: { type: Schema.Types.ObjectId, ref: 'User' }
+        user: { type: Schema.Types.ObjectId, ref: 'User' }
         }
 );
 
-const mailBoxSchema = model("Mailbox", mailBoxSchema);
+const Suggestion = model("Suggestion", suggestionSchema);
 
-module.exports = Mailbox;
+module.exports = Suggestion;
