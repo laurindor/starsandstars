@@ -8,7 +8,7 @@ export default class Signup extends Component {
   state = {
     username: "",
     password: "",
-    email: "",
+    email: "",    
     error: null
   };
 
@@ -24,7 +24,7 @@ export default class Signup extends Component {
     const credentials = {
       username: this.state.username,
       password: this.state.password,
-      email: this.state.email
+      email: this.state.email      
     };
     signup(credentials).then((res) => {
       // successful signup
