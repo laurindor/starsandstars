@@ -1,17 +1,9 @@
 const path = require('path')
-<<<<<<< HEAD
-
-// We reuse this import in order to have access to the `body` property in requests
-const express = require("express");
-
-const favicon = require("serve-favicon")  
-=======
 // We reuse this import in order to have access to the `body` property in requests
 const express = require("express");
 
 const favicon = require("serve-favicon")
 
->>>>>>> 48dd957e4457edca501f0d0545fdb50191e490f0
 // ℹ️ Responsible for the messages you see in the terminal as requests are coming in
 // https://www.npmjs.com/package/morgan
 const logger = require("morgan");
@@ -40,14 +32,10 @@ module.exports = (app) => {
   
   app.use(express.static(path.join(__dirname, "..", "public")))
 
-<<<<<<< HEAD
-  app.use(favicon(path.join(__dirname, "..", "public", "favicon.ico")))
-=======
   app.use(express.static(path.join(__dirname, "..", "public")))
 
   app.use(favicon(path.join(__dirname, "..", "public", "favicon.ico")))
   
->>>>>>> 48dd957e4457edca501f0d0545fdb50191e490f0
   // In development environment the app logs
   app.use(logger("dev"));
   // To have access to `body` property in the request
