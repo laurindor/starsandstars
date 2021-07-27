@@ -1,19 +1,25 @@
+//Setup
 import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import LoadingComponent from './components/Loading';
+import NormalRoute from './routing-components/NormalRoute';
+import ProtectedRoute from './routing-components/ProtectedRoute';
+
+//Helpers
+import * as CONSTS from './utils/consts';
+import { getLoggedIn, logout } from './services/auth';
+import axios from "axios";
+
+//UI
 import Navbar from './components/Navbar/Navbar';
+
+//Pages
 import HomePage from './pages/HomePage';
 import LogIn from './pages/LogIn';
 import ProtectedPage from './pages/ProtectedPage';
 import Signup from './pages/Signup';
-import NormalRoute from './routing-components/NormalRoute';
-import ProtectedRoute from './routing-components/ProtectedRoute';
-import { getLoggedIn, logout } from './services/auth';
-import * as CONSTS from './utils/consts';
-import axios from "axios";
-import DetailsPageHeader from "./components/DetailsPageHeader"
-import Card from "./components/Card"
-import CardsList from './components/CardsList';
+import DetailsPageHeader from "./pages/DetailsPageHeader"
+import Card from "./pages/Card"
+import MyConstellation from './pages/MyConstellation';
 
 
 function App() {
@@ -44,7 +50,7 @@ useEffect(()=>{
 			setUser(null);
 		}
 		getLoggedIn(accessToken).then((res) => {
-			console.log(res);
+			//console.log(res);
 			if (!res.data) {
 				console.log('RES IN CASE OF FAILURE', res);
 				setUser(null);
@@ -83,7 +89,13 @@ useEffect(()=>{
 			<Switch>
 	
 				{/* <NormalRoute exact path={'/latest-pics/'} render={(props)=><CardsList {...props} setSelectedPic={setSelectedPic} />}/> */}
-
+				<ProtectedRoute
+					exact
+					path={'/myconstellation'}
+					component={MyConstellation}
+					user={user}
+				/>
+			
 				<Route exact path={'/details'} render={(props)=><Card {...props} data={selectedPic} />}/> 
 				<NormalRoute exact path={'/daily-details'} component={DetailsPageHeader} data={dailyPic} />
 				<NormalRoute exact path={'/'}
