@@ -1,25 +1,21 @@
-import logo from "../logo.svg";
+import React from "react"
+import Header from "../components/Header"
 import "../App.css";
+import CardsList from "../components/CardsList";
+import AddSuggestion from "../components/AddSuggestion";
+import Footer from "../components/Footer/Footer";
 
-function HomePage() {
+function HomePage(props) {
+  const {dailyPic, setSelectedPic, latestPicsList, user} = props
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header data={dailyPic}/>
+      <CardsList data={latestPicsList} setSelectedPic={setSelectedPic}/>
+      {user && <AddSuggestion user={user}/>}
+      <Footer/>
+    </>
   );
 }
 
 export default HomePage;
+  
